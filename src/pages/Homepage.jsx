@@ -115,18 +115,19 @@ function NeemCanopy() {
 
 function ContinuousVine() {
   return (
-    <div style={{ position: "absolute", top: 0, right: 36, width: 100, height: "100%", pointerEvents: "none", zIndex: 1, overflow: "hidden" }}>
-      <svg viewBox="0 0 100 5000" style={{ width: 100, height: "100%" }} preserveAspectRatio="xMidYMin slice">
-        <path d="M50 0 Q70 80 45 160 Q20 240 65 320 Q85 400 40 480 Q15 560 60 640 Q80 720 35 800 Q10 880 55 960 Q75 1040 40 1120 Q20 1200 65 1280 Q85 1360 45 1440 Q15 1520 60 1600 Q80 1680 35 1760 Q10 1840 55 1920 Q75 2000 40 2080 Q20 2160 65 2240 Q85 2320 45 2400 Q15 2480 60 2560 Q80 2640 35 2720 Q10 2800 55 2880 Q75 2960 40 3040 Q20 3120 65 3200 Q85 3280 45 3360 Q15 3440 60 3520 Q80 3600 35 3680 Q10 3760 55 3840 Q75 3920 40 4000 Q20 4080 65 4160 Q85 4240 45 4320 Q15 4400 60 4480 Q80 4560 35 4640 Q10 4720 55 4800 Q75 4880 40 4960"
-          fill="none" stroke={C.forest} strokeWidth="1" opacity="0.06" />
+    <div style={{ position: "absolute", top: 0, right: 36, width: 120, height: "100%", pointerEvents: "none", zIndex: 3, overflow: "hidden" }}>
+      <svg viewBox="0 0 120 5000" style={{ width: 120, height: "100%" }} preserveAspectRatio="xMidYMin slice">
+        <path d="M60 0 Q80 80 50 160 Q20 240 70 320 Q95 400 45 480 Q15 560 65 640 Q85 720 40 800 Q10 880 60 960 Q80 1040 45 1120 Q20 1200 70 1280 Q90 1360 50 1440 Q15 1520 65 1600 Q85 1680 40 1760 Q10 1840 60 1920 Q80 2000 45 2080 Q20 2160 70 2240 Q90 2320 50 2400 Q15 2480 65 2560 Q85 2640 40 2720 Q10 2800 60 2880 Q80 2960 45 3040 Q20 3120 70 3200 Q90 3280 50 3360 Q15 3440 65 3520 Q85 3600 40 3680 Q10 3760 60 3840 Q80 3920 45 4000 Q20 4080 70 4160 Q90 4240 50 4320 Q15 4400 65 4480 Q85 4560 40 4640 Q10 4720 60 4800 Q80 4880 45 4960"
+          fill="none" stroke={C.forest} strokeWidth="1.2" opacity="0.12" />
         {[80, 200, 360, 520, 680, 840, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2500, 2800, 3100, 3400, 3700, 4000, 4300, 4600].map((y, i) => {
-          const x = 50 + Math.sin(y / 160 * Math.PI) * 20;
+          const x = 60 + Math.sin(y / 160 * Math.PI) * 25;
           const dir = i % 2 === 0 ? 1 : -1;
           const col = [C.neem, C.forest, C.saffron, C.rose, C.turmeric][i % 5];
           return (
-            <g key={i} transform={`translate(${x},${y})`} opacity={0.05 + Math.sin(i * 1.3) * 0.02}>
-              <path d={`M0 0 Q${dir * 14} -10 ${dir * 24} -16 Q${dir * 18} -6 0 0Z`} fill={col} />
-              <path d={`M0 0 Q${dir * 12} 6 ${dir * 20} 12 Q${dir * 14} 4 0 0Z`} fill={col} opacity="0.7" />
+            <g key={i} transform={`translate(${x},${y})`} opacity={0.1 + Math.sin(i * 1.3) * 0.03}>
+              <path d={`M0 0 Q${dir * 16} -12 ${dir * 28} -18 Q${dir * 20} -7 0 0Z`} fill={col} />
+              <path d={`M0 0 Q${dir * 14} 7 ${dir * 24} 14 Q${dir * 16} 5 0 0Z`} fill={col} opacity="0.7" />
+              {i % 3 === 0 && <circle cx={dir * 32} cy={-4} r={3 + Math.sin(i) * 1.5} fill={[C.rose, C.saffron, C.turmeric][i % 3]} opacity="0.15" />}
             </g>
           );
         })}
@@ -136,12 +137,21 @@ function ContinuousVine() {
 }
 
 function Navbar() {
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  const navLinks = [
+    { label: "Shop", to: "/product/kumkumadi" },
+    { label: "Rituals", to: "/quiz" },
+    { label: "Ingredients", to: "/product/kumkumadi" },
+    { label: "Our Story", to: null },
+  ];
+
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
@@ -150,16 +160,16 @@ function Navbar() {
       transition: "all 0.4s ease", padding: "0 32px",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
-        <div style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 28, color: C.forest, display: "flex", alignItems: "center", gap: 10 }}>
+        <div onClick={() => navigate('/')} style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 28, color: C.forest, display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
           <svg viewBox="0 0 24 28" style={{ width: 20, height: 24 }}>
             <path d="M12 26 Q10 16 4 9 Q1 5 5 2 Q9 -1 12 3 Q15 -1 19 2 Q23 5 20 9 Q14 16 12 26Z" fill={C.forest} opacity="0.7" />
           </svg>
           Āhā
         </div>
         <div style={{ display: "flex", gap: 36 }}>
-          {["Shop", "Rituals", "Ingredients", "Our Story"].map((l) => (
-            <a key={l} href="#" style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 500, color: C.forest, textDecoration: "none", letterSpacing: "0.03em", transition: "color 0.2s" }}
-              onMouseEnter={(e) => e.target.style.color = C.saffron} onMouseLeave={(e) => e.target.style.color = C.forest}>{l}</a>
+          {navLinks.map((l) => (
+            <span key={l.label} onClick={() => l.to && navigate(l.to)} style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 500, color: C.forest, textDecoration: "none", letterSpacing: "0.03em", transition: "color 0.2s", cursor: "pointer" }}
+              onMouseEnter={(e) => e.target.style.color = C.saffron} onMouseLeave={(e) => e.target.style.color = C.forest}>{l.label}</span>
           ))}
         </div>
         <div style={{ position: "relative", cursor: "pointer" }}>
@@ -237,10 +247,11 @@ function HeroContent() {
 }
 
 function RitualContent() {
+  const navigate = useNavigate();
   const stepRefs = [useScrollReveal(0.3), useScrollReveal(0.3), useScrollReveal(0.3)];
   return (
     <div style={{ padding: "100px 32px 140px", position: "relative" }}>
-      <div style={{ position: "absolute", right: 60, top: 80, fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 220, color: C.forest, opacity: 0.02, lineHeight: 0.85, pointerEvents: "none", userSelect: "none" }}>Ri<br />tu<br />al</div>
+      <div style={{ position: "absolute", right: 60, top: 80, fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 220, color: C.forest, opacity: 0.012, lineHeight: 0.85, pointerEvents: "none", userSelect: "none" }}>Ri<br />tu<br />al</div>
       <div style={{ maxWidth: 800, margin: "0 auto", position: "relative", zIndex: 2 }}>
         <div style={{ textAlign: "center", marginBottom: 80 }}>
           <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.12em", color: C.saffron, textTransform: "uppercase", marginBottom: 16 }}>The glow ritual</div>
@@ -275,7 +286,7 @@ function RitualContent() {
           );
         })}
         <div style={{ textAlign: "center", marginTop: 64 }}>
-          <button style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", background: C.forest, color: C.cream, border: "none", padding: "18px 44px", borderRadius: 100, cursor: "pointer", transition: "all 0.3s", boxShadow: `0 4px 16px ${C.forest}25` }}
+          <button onClick={() => navigate('/quiz')} style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", background: C.forest, color: C.cream, border: "none", padding: "18px 44px", borderRadius: 100, cursor: "pointer", transition: "all 0.3s", boxShadow: `0 4px 16px ${C.forest}25` }}
             onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "none"}>
             Get your personalized ritual
           </button>
@@ -301,7 +312,7 @@ function IngredientContent() {
   const [ref, visible] = useScrollReveal(0.2);
   return (
     <div ref={ref} style={{ padding: "120px 32px 140px", position: "relative" }}>
-      <div style={{ position: "absolute", left: -20, top: "50%", transform: "translateY(-50%)", fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 200, color: C.saffron, opacity: 0.03, lineHeight: 0.9, pointerEvents: "none", userSelect: "none", writingMode: "vertical-lr" }}>Saffron</div>
+      <div style={{ position: "absolute", left: -20, top: "50%", transform: "translateY(-50%)", fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 200, color: C.saffron, opacity: 0.015, lineHeight: 0.9, pointerEvents: "none", userSelect: "none", writingMode: "vertical-lr" }}>Saffron</div>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 80, alignItems: "center", position: "relative", zIndex: 2, opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(30px)", transition: "all 1s cubic-bezier(0.16,1,0.3,1)" }}>
         <div style={{ background: `${C.saffron}08`, border: `1px solid ${C.saffron}15`, borderRadius: 28, padding: 64, minHeight: 480, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
           <svg viewBox="0 0 240 320" style={{ width: 180 }}>
@@ -383,7 +394,7 @@ function ProductsContent() {
   const [ref, visible] = useScrollReveal(0.1);
   return (
     <div ref={ref} style={{ padding: "100px 32px 140px", position: "relative" }}>
-      <div style={{ position: "absolute", right: 20, top: 60, fontFamily: "'DM Serif Display'", fontSize: 160, color: C.forest, opacity: 0.02, pointerEvents: "none", userSelect: "none" }}>Botanicals</div>
+      <div style={{ position: "absolute", right: 20, top: 60, fontFamily: "'DM Serif Display'", fontSize: 160, color: C.forest, opacity: 0.012, pointerEvents: "none", userSelect: "none" }}>Botanicals</div>
       <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.12em", color: C.gold, textTransform: "uppercase", marginBottom: 12 }}>Loved by your skin</div>

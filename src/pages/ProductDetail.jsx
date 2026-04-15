@@ -269,7 +269,7 @@ function IngredientStory() {
     }}>
       <div style={{
         position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)",
-        fontFamily: "'DM Serif Display'", fontSize: 180, color: C.saffron, opacity: 0.025,
+        fontFamily: "'DM Serif Display'", fontSize: 180, color: C.saffron, opacity: 0.015,
         lineHeight: 0.85, pointerEvents: "none", writingMode: "vertical-lr",
       }}>Saffron</div>
 
