@@ -118,13 +118,13 @@ function ContinuousVine() {
     <div style={{ position: "absolute", top: 0, right: 36, width: 120, height: "100%", pointerEvents: "none", zIndex: 3, overflow: "hidden" }}>
       <svg viewBox="0 0 120 5000" style={{ width: 120, height: "100%" }} preserveAspectRatio="xMidYMin slice">
         <path d="M60 0 Q80 80 50 160 Q20 240 70 320 Q95 400 45 480 Q15 560 65 640 Q85 720 40 800 Q10 880 60 960 Q80 1040 45 1120 Q20 1200 70 1280 Q90 1360 50 1440 Q15 1520 65 1600 Q85 1680 40 1760 Q10 1840 60 1920 Q80 2000 45 2080 Q20 2160 70 2240 Q90 2320 50 2400 Q15 2480 65 2560 Q85 2640 40 2720 Q10 2800 60 2880 Q80 2960 45 3040 Q20 3120 70 3200 Q90 3280 50 3360 Q15 3440 65 3520 Q85 3600 40 3680 Q10 3760 60 3840 Q80 3920 45 4000 Q20 4080 70 4160 Q90 4240 50 4320 Q15 4400 65 4480 Q85 4560 40 4640 Q10 4720 60 4800 Q80 4880 45 4960"
-          fill="none" stroke={C.forest} strokeWidth="1.2" opacity="0.12" />
+          fill="none" stroke={C.forest} strokeWidth="1.5" opacity="0.2" />
         {[80, 200, 360, 520, 680, 840, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2500, 2800, 3100, 3400, 3700, 4000, 4300, 4600].map((y, i) => {
           const x = 60 + Math.sin(y / 160 * Math.PI) * 25;
           const dir = i % 2 === 0 ? 1 : -1;
           const col = [C.neem, C.forest, C.saffron, C.rose, C.turmeric][i % 5];
           return (
-            <g key={i} transform={`translate(${x},${y})`} opacity={0.1 + Math.sin(i * 1.3) * 0.03}>
+            <g key={i} transform={`translate(${x},${y})`} opacity={0.18 + Math.sin(i * 1.3) * 0.04}>
               <path d={`M0 0 Q${dir * 16} -12 ${dir * 28} -18 Q${dir * 20} -7 0 0Z`} fill={col} />
               <path d={`M0 0 Q${dir * 14} 7 ${dir * 24} 14 Q${dir * 16} 5 0 0Z`} fill={col} opacity="0.7" />
               {i % 3 === 0 && <circle cx={dir * 32} cy={-4} r={3 + Math.sin(i) * 1.5} fill={[C.rose, C.saffron, C.turmeric][i % 3]} opacity="0.15" />}
@@ -431,7 +431,9 @@ function QuizContent() {
   const navigate = useNavigate();
   const [ref, visible] = useScrollReveal(0.2);
   return (
-    <div ref={ref} style={{ padding: "80px 32px", position: "relative" }}>
+    <div ref={ref} style={{ padding: "0", position: "relative" }}>
+      <div style={{ height: 120, background: `linear-gradient(180deg, transparent 0%, ${C.forest}40 40%, ${C.forest} 100%)` }} />
+      <div style={{ background: C.forest, padding: "0 32px 80px" }}>
       <svg viewBox="0 0 1000 500" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}>
         {[{ x: 100, y: 400, s: 2.5, r: 10 }, { x: 850, y: 380, s: 2, r: -20 }, { x: 750, y: 80, s: 1.5, r: 35 }].map((l, i) => (
           <g key={i} transform={`translate(${l.x},${l.y}) scale(${l.s}) rotate(${l.r})`} opacity="0.06">
@@ -451,6 +453,7 @@ function QuizContent() {
         </button>
         <div style={{ display: "flex", justifyContent: "center", gap: 28, marginTop: 40, fontFamily: "'DM Mono', monospace", fontSize: 11, color: `${C.cream}aa` }}>
           <span>5 questions</span><span style={{ color: `${C.cream}66` }}>·</span><span>16 rituals</span><span style={{ color: `${C.cream}66` }}>·</span><span>100% organic</span>
+        </div>
         </div>
       </div>
     </div>
@@ -513,22 +516,16 @@ export default function AhaV5() {
         position: "absolute", inset: 0, zIndex: 0,
         background: `linear-gradient(180deg,
           ${C.cream} 0%,
-          ${C.cream} 12%,
-          ${C.linen} 16%,
-          ${C.cream} 20%,
-          ${C.cream} 28%,
-          ${C.parchment} 34%,
-          #EFE2CC 40%,
-          ${C.parchment} 46%,
-          ${C.cream} 52%,
+          ${C.cream} 14%,
+          ${C.linen} 20%,
+          ${C.cream} 26%,
+          ${C.parchment} 38%,
+          #EFE2CC 44%,
+          ${C.parchment} 50%,
           ${C.cream} 58%,
-          ${C.linen} 64%,
-          ${C.cream} 70%,
-          ${C.linen} 76%,
-          ${C.forest}30 82%,
-          ${C.forest} 86%,
-          ${C.forest} 92%,
-          ${C.forestDeep} 100%
+          ${C.linen} 68%,
+          ${C.cream} 78%,
+          ${C.cream} 100%
         )`,
       }} />
 
