@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const C = {
   cream: "#F5F0E8", linen: "#EDE6D8", parchment: "#E8DFD0",
   forest: "#2D4A3E", forestDeep: "#1E352B", charcoal: "#2C2926",
-  warmGray: "#6B6560", stone: "#9C9590", gold: "#B8976A",
+  warmGray: "#4A4540", stone: "#7A756F", gold: "#B8976A",
   turmeric: "#E8A838", saffron: "#D4764E", rose: "#C45A7B",
   neem: "#5A9E6F", sandalwood: "#C4A97D",
 };

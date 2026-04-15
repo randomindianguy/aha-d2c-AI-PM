@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const C = {
   cream: "#F5F0E8", linen: "#EDE6D8", parchment: "#E8DFD0",
   forest: "#2D4A3E", forestDeep: "#1E352B", charcoal: "#2C2926",
-  warmGray: "#6B6560", stone: "#9C9590", gold: "#B8976A",
+  warmGray: "#4A4540", stone: "#7A756F", gold: "#B8976A",
   turmeric: "#E8A838", saffron: "#D4764E", rose: "#C45A7B",
   neem: "#5A9E6F", sandalwood: "#C4A97D", lavender: "#8B7EB8",
 };
@@ -184,60 +184,76 @@ function HeroContent() {
   const [v, setV] = useState(false);
   useEffect(() => { setTimeout(() => setV(true), 200); }, []);
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "120px 32px 140px", position: "relative" }}>
-      <svg viewBox="0 0 1000 700" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}>
-        <g opacity="0.5">
-          {[
-            { x: 700, y: 600, s: 2.2, r: -15, c: C.neem }, { x: 850, y: 350, s: 1.8, r: 30, c: C.forest },
-            { x: 780, y: 120, s: 1.4, r: -40, c: C.neem }, { x: 620, y: 200, s: 1, r: 55, c: C.forest },
-            { x: 50, y: 550, s: 1.5, r: 20, c: C.forest },
-          ].map((l, i) => (
-            <g key={i} transform={`translate(${l.x},${l.y}) scale(${l.s}) rotate(${l.r})`} opacity={0.08 + i * 0.008}>
-              <path d="M0 0 Q-15 -30 5 -55 Q20 -35 0 0Z" fill={l.c} />
-              <path d="M0 0 Q20 -25 40 -40 Q30 -15 0 0Z" fill={l.c} opacity="0.8" />
-            </g>
-          ))}
-          {[{ x: 800, y: 450, s: 22, c: C.rose }, { x: 680, y: 150, s: 16, c: C.saffron }, { x: 100, y: 420, s: 12, c: C.turmeric }].map((f, i) => (
-            <g key={`f${i}`} transform={`translate(${f.x},${f.y})`} opacity={0.06}>
-              {[0, 60, 120, 180, 240, 300].map((a, j) => (
-                <ellipse key={j} cx={Math.cos(a * Math.PI / 180) * f.s * 0.6} cy={Math.sin(a * Math.PI / 180) * f.s * 0.6} rx={f.s * 0.45} ry={f.s * 0.25} transform={`rotate(${a} ${Math.cos(a * Math.PI / 180) * f.s * 0.6} ${Math.sin(a * Math.PI / 180) * f.s * 0.6})`} fill={f.c} />
-              ))}
-            </g>
-          ))}
-        </g>
-      </svg>
-      <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%", position: "relative", zIndex: 2 }}>
-        <div style={{ opacity: v ? 1 : 0, transform: v ? "none" : "translateY(20px)", transition: "all 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s" }}>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.12em", color: C.saffron, textTransform: "uppercase", marginBottom: 32, display: "flex", alignItems: "center", gap: 12 }}>
-            <svg viewBox="0 0 40 8" style={{ width: 40, height: 8 }}><path d="M0 4 Q10 1 20 4 Q30 7 40 4" fill="none" stroke={C.saffron} strokeWidth="0.8" opacity="0.5" /></svg>
-            Farm-traced organic skincare
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "120px 32px 100px", position: "relative" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%", position: "relative", zIndex: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
+        <div>
+          <div style={{ opacity: v ? 1 : 0, transform: v ? "none" : "translateY(20px)", transition: "all 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s" }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.12em", color: C.saffron, textTransform: "uppercase", marginBottom: 32, display: "flex", alignItems: "center", gap: 12 }}>
+              <svg viewBox="0 0 40 8" style={{ width: 40, height: 8 }}><path d="M0 4 Q10 1 20 4 Q30 7 40 4" fill="none" stroke={C.saffron} strokeWidth="0.8" opacity="0.5" /></svg>
+              Farm-traced organic skincare
+            </div>
+          </div>
+          <h1 style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 72, fontWeight: 400, color: C.forest, lineHeight: 0.95, letterSpacing: "-0.035em", margin: "0 0 0 -4px", opacity: v ? 1 : 0, transform: v ? "none" : "translateX(-30px)", transition: "all 1s cubic-bezier(0.16,1,0.3,1) 0.25s" }}>Your skin</h1>
+          <h1 style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 72, fontWeight: 400, color: C.forest, lineHeight: 0.95, letterSpacing: "-0.035em", margin: "8px 0 0 -4px", fontStyle: "italic", opacity: v ? 1 : 0, transform: v ? "none" : "translateX(-30px)", transition: "all 1s cubic-bezier(0.16,1,0.3,1) 0.4s" }}>knows.</h1>
+          <div style={{ margin: "36px 0 32px", maxWidth: 400, opacity: v ? 1 : 0, transform: v ? "none" : "translateY(16px)", transition: "all 0.8s ease 0.6s" }}>
+            <p style={{ fontFamily: "'DM Sans'", fontSize: 17, lineHeight: 1.7, color: C.charcoal }}>Curated rituals built around hero ingredients, sourced from farms you can trace. Nature didn't hold back. Neither did we.</p>
+          </div>
+          <div style={{ display: "flex", gap: 16, opacity: v ? 1 : 0, transform: v ? "none" : "translateY(12px)", transition: "all 0.7s ease 0.75s" }}>
+            <button onClick={() => navigate('/quiz')} style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", background: C.forest, color: C.cream, border: "none", padding: "18px 40px", borderRadius: 100, cursor: "pointer", transition: "all 0.3s", display: "flex", alignItems: "center", gap: 12, boxShadow: `0 6px 24px ${C.forest}30` }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 10px 32px ${C.forest}40`; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = `0 6px 24px ${C.forest}30`; }}>
+              Find your ritual
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+            </button>
+          </div>
+          <div style={{ display: "flex", gap: 28, marginTop: 48, opacity: v ? 1 : 0, transition: "all 0.7s ease 0.9s" }}>
+            {[{ c: C.turmeric, n: "Turmeric", p: "Meghalaya" }, { c: C.saffron, n: "Saffron", p: "Kashmir" }, { c: C.rose, n: "Rose", p: "Kannauj" }, { c: C.neem, n: "Neem", p: "Vrindavan" }].map((ing, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${ing.c}15`, border: `1.5px solid ${ing.c}25`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ width: 10, height: 10, borderRadius: "50%", background: ing.c, opacity: 0.5 }} />
+                </div>
+                <div>
+                  <div style={{ fontFamily: "'DM Sans'", fontSize: 12, fontWeight: 600, color: C.charcoal }}>{ing.n}</div>
+                  <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: C.charcoal, opacity: 0.6 }}>{ing.p}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-        <h1 style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 84, fontWeight: 400, color: C.forest, lineHeight: 0.95, letterSpacing: "-0.035em", margin: "0 0 0 -6px", opacity: v ? 1 : 0, transform: v ? "none" : "translateX(-30px)", transition: "all 1s cubic-bezier(0.16,1,0.3,1) 0.25s" }}>Your skin</h1>
-        <h1 style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 84, fontWeight: 400, color: C.forest, lineHeight: 0.95, letterSpacing: "-0.035em", margin: "8px 0 0 -6px", fontStyle: "italic", opacity: v ? 1 : 0, transform: v ? "none" : "translateX(-30px)", transition: "all 1s cubic-bezier(0.16,1,0.3,1) 0.4s" }}>knows.</h1>
-        <div style={{ margin: "40px 0 36px", maxWidth: 380, opacity: v ? 1 : 0, transform: v ? "none" : "translateY(16px)", transition: "all 0.8s ease 0.6s" }}>
-          <p style={{ fontFamily: "'DM Sans'", fontSize: 17, lineHeight: 1.7, color: C.warmGray }}>Curated rituals built around hero ingredients, sourced from farms you can trace. Nature didn't hold back. Neither did we.</p>
-        </div>
-        <div style={{ display: "flex", gap: 16, opacity: v ? 1 : 0, transform: v ? "none" : "translateY(12px)", transition: "all 0.7s ease 0.75s" }}>
-          <button onClick={() => navigate('/quiz')} style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", background: C.forest, color: C.cream, border: "none", padding: "18px 40px", borderRadius: 100, cursor: "pointer", transition: "all 0.3s", display: "flex", alignItems: "center", gap: 12, boxShadow: `0 6px 24px ${C.forest}30` }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 10px 32px ${C.forest}40`; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = `0 6px 24px ${C.forest}30`; }}>
-            Find your ritual
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-          </button>
-        </div>
-        <div style={{ display: "flex", gap: 28, marginTop: 56, opacity: v ? 1 : 0, transition: "all 0.7s ease 0.9s" }}>
-          {[{ c: C.turmeric, n: "Turmeric", p: "Meghalaya" }, { c: C.saffron, n: "Saffron", p: "Kashmir" }, { c: C.rose, n: "Rose", p: "Kannauj" }, { c: C.neem, n: "Neem", p: "Vrindavan" }].map((ing, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${ing.c}15`, border: `1.5px solid ${ing.c}25`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <div style={{ width: 10, height: 10, borderRadius: "50%", background: ing.c, opacity: 0.5 }} />
-              </div>
-              <div>
-                <div style={{ fontFamily: "'DM Sans'", fontSize: 12, fontWeight: 600, color: C.charcoal }}>{ing.n}</div>
-                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: C.stone }}>{ing.p}</div>
-              </div>
-            </div>
-          ))}
+
+        {/* Right side - prominent botanical illustration */}
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "center",
+          opacity: v ? 1 : 0, transform: v ? "none" : "translateY(20px) scale(0.95)",
+          transition: "all 1.2s cubic-bezier(0.16,1,0.3,1) 0.4s",
+        }}>
+          <div style={{
+            width: "100%", maxWidth: 420, aspectRatio: "1", borderRadius: 999,
+            background: `radial-gradient(circle at 50% 50%, ${C.saffron}10 0%, ${C.saffron}05 40%, transparent 70%)`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            position: "relative",
+          }}>
+            <svg viewBox="0 0 300 400" style={{ width: "65%", position: "relative", zIndex: 1 }}>
+              <g>
+                <path d="M150 380 Q148 310 145 240 Q142 190 150 100" fill="none" stroke={C.saffron} strokeWidth="2.5" opacity="0.5" />
+                <path d="M150 100 Q142 65 128 40 Q120 20 128 8 Q136 -4 146 12 Q150 22 150 100" fill={C.saffron} opacity="0.35" />
+                <path d="M150 100 Q158 65 172 40 Q180 20 172 8 Q164 -4 154 12 Q150 22 150 100" fill={C.saffron} opacity="0.32" />
+                <path d="M150 100 Q150 70 150 40 Q148 22 140 8 Q145 0 150 14 Q155 0 160 8 Q152 22 150 40" fill={C.saffron} opacity="0.4" />
+                <ellipse cx="128" cy="10" rx="8" ry="18" fill={C.saffron} opacity="0.5" transform="rotate(-12 128 10)" />
+                <ellipse cx="172" cy="10" rx="8" ry="18" fill={C.saffron} opacity="0.45" transform="rotate(12 172 10)" />
+                <ellipse cx="150" cy="5" rx="6" ry="20" fill={C.saffron} opacity="0.55" />
+                <path d="M145 240 Q118 228 98 245 Q86 265 102 278 Q120 284 145 240" fill={C.neem} opacity="0.15" />
+                <path d="M145 240 Q120 234 106 242" fill="none" stroke={C.neem} strokeWidth="0.7" opacity="0.3" />
+                <path d="M148 310 Q172 300 188 318 Q196 340 178 348 Q162 342 148 310" fill={C.neem} opacity="0.12" />
+                <path d="M148 310 Q168 304 180 312" fill="none" stroke={C.neem} strokeWidth="0.7" opacity="0.25" />
+                <path d="M146 180 Q126 172 112 185 Q105 200 118 208 Q132 210 146 180" fill={C.neem} opacity="0.1" />
+                {[120, 180, 240, 300, 350].map((y, i) => (
+                  <circle key={i} cx={138 + Math.sin(i * 2.3) * 24} cy={y + Math.sin(i * 1.7) * 15} r={1.8} fill={C.turmeric} opacity={0.15 + i * 0.02} />
+                ))}
+              </g>
+            </svg>
+            <div style={{ position: "absolute", bottom: "15%", fontFamily: "'DM Mono', monospace", fontSize: 12, color: C.saffron, opacity: 0.35, letterSpacing: "0.04em", fontStyle: "italic" }}>Crocus sativus L.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -415,26 +431,26 @@ function QuizContent() {
   const navigate = useNavigate();
   const [ref, visible] = useScrollReveal(0.2);
   return (
-    <div ref={ref} style={{ padding: "120px 32px", position: "relative" }}>
+    <div ref={ref} style={{ padding: "80px 32px", position: "relative" }}>
       <svg viewBox="0 0 1000 500" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}>
         {[{ x: 100, y: 400, s: 2.5, r: 10 }, { x: 850, y: 380, s: 2, r: -20 }, { x: 750, y: 80, s: 1.5, r: 35 }].map((l, i) => (
-          <g key={i} transform={`translate(${l.x},${l.y}) scale(${l.s}) rotate(${l.r})`} opacity="0.04">
+          <g key={i} transform={`translate(${l.x},${l.y}) scale(${l.s}) rotate(${l.r})`} opacity="0.06">
             <path d="M0 0 Q-15 -30 5 -55 Q20 -35 0 0Z" fill={C.cream} />
             <path d="M0 0 Q20 -25 40 -40 Q30 -15 0 0Z" fill={C.cream} opacity="0.7" />
           </g>
         ))}
       </svg>
       <div style={{ maxWidth: 580, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1, opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(24px)", transition: "all 1s cubic-bezier(0.16,1,0.3,1)" }}>
-        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.12em", color: `${C.cream}55`, textTransform: "uppercase", marginBottom: 24 }}>Your ritual awaits</div>
+        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.12em", color: `${C.cream}cc`, textTransform: "uppercase", marginBottom: 24 }}>Your ritual awaits</div>
         <h2 style={{ fontFamily: "'DM Serif Display'", fontSize: 52, fontWeight: 400, color: C.cream, margin: "0 0 16px", lineHeight: 1.1, fontStyle: "italic" }}>Not sure where<br />to start?</h2>
-        <p style={{ fontFamily: "'DM Sans'", fontSize: 16, lineHeight: 1.7, color: `${C.cream}88`, margin: "0 0 44px" }}>Five questions. Two minutes. One ritual — with every ingredient traced back to its source.</p>
+        <p style={{ fontFamily: "'DM Sans'", fontSize: 16, lineHeight: 1.7, color: `${C.cream}dd`, margin: "0 0 44px" }}>Five questions. Two minutes. One ritual — with every ingredient traced back to its source.</p>
         <button onClick={() => navigate('/quiz')} style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", background: C.cream, color: C.forest, border: "none", padding: "20px 48px", borderRadius: 100, cursor: "pointer", transition: "all 0.3s", display: "inline-flex", alignItems: "center", gap: 12 }}
           onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "none"}>
           Take the skin quiz
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
         </button>
-        <div style={{ display: "flex", justifyContent: "center", gap: 28, marginTop: 52, fontFamily: "'DM Mono', monospace", fontSize: 11, color: `${C.cream}44` }}>
-          <span>5 questions</span><span style={{ color: `${C.cream}22` }}>·</span><span>16 rituals</span><span style={{ color: `${C.cream}22` }}>·</span><span>100% organic</span>
+        <div style={{ display: "flex", justifyContent: "center", gap: 28, marginTop: 40, fontFamily: "'DM Mono', monospace", fontSize: 11, color: `${C.cream}aa` }}>
+          <span>5 questions</span><span style={{ color: `${C.cream}66` }}>·</span><span>16 rituals</span><span style={{ color: `${C.cream}66` }}>·</span><span>100% organic</span>
         </div>
       </div>
     </div>
@@ -452,28 +468,28 @@ function Footer() {
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", gap: 48, marginBottom: 56 }}>
         <div>
           <div style={{ fontFamily: "'DM Serif Display'", fontSize: 32, marginBottom: 16, display: "flex", alignItems: "center", gap: 10 }}>
-            <svg viewBox="0 0 20 24" style={{ width: 18, height: 22 }}><path d="M10 22 Q8 14 3 8 Q1 5 4 2 Q7 0 10 3 Q13 0 16 2 Q19 5 17 8 Q12 14 10 22Z" fill={C.cream} opacity="0.5" /></svg>
+            <svg viewBox="0 0 20 24" style={{ width: 18, height: 22 }}><path d="M10 22 Q8 14 3 8 Q1 5 4 2 Q7 0 10 3 Q13 0 16 2 Q19 5 17 8 Q12 14 10 22Z" fill={C.cream} opacity="0.7" /></svg>
             Āhā
           </div>
-          <p style={{ fontFamily: "'DM Sans'", fontSize: 14, lineHeight: 1.7, color: `${C.cream}66`, maxWidth: 260, marginBottom: 24 }}>Organic skincare rituals, rooted in nature. Every ingredient traced.</p>
+          <p style={{ fontFamily: "'DM Sans'", fontSize: 14, lineHeight: 1.7, color: `${C.cream}aa`, maxWidth: 260, marginBottom: 24 }}>Organic skincare rituals, rooted in nature. Every ingredient traced.</p>
           <div style={{ display: "flex", gap: 8 }}>
             {[C.turmeric, C.saffron, C.rose, C.neem, C.sandalwood].map((c, i) => (
-              <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: c, opacity: 0.4 }} />
+              <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: c, opacity: 0.6 }} />
             ))}
           </div>
         </div>
         {cols.map((col) => (
           <div key={col.t}>
-            <h4 style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: `${C.cream}33`, margin: "0 0 20px" }}>{col.t}</h4>
+            <h4 style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: `${C.cream}77`, margin: "0 0 20px" }}>{col.t}</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
-              {col.links.map((l) => <a key={l} href="#" style={{ fontFamily: "'DM Sans'", fontSize: 14, color: `${C.cream}77`, textDecoration: "none", transition: "color 0.2s" }}
-                onMouseEnter={(e) => e.target.style.color = C.cream} onMouseLeave={(e) => e.target.style.color = `${C.cream}77`}>{l}</a>)}
+              {col.links.map((l) => <a key={l} href="#" style={{ fontFamily: "'DM Sans'", fontSize: 14, color: `${C.cream}bb`, textDecoration: "none", transition: "color 0.2s" }}
+                onMouseEnter={(e) => e.target.style.color = C.cream} onMouseLeave={(e) => e.target.style.color = `${C.cream}bb`}>{l}</a>)}
             </div>
           </div>
         ))}
       </div>
-      <div style={{ borderTop: `1px solid ${C.cream}0a`, paddingTop: 24, display: "flex", justifyContent: "space-between" }}>
-        <span style={{ fontFamily: "'DM Sans'", fontSize: 11, color: `${C.cream}2a` }}>2026 Āhā Skincare. Rooted in what's real.</span>
+      <div style={{ borderTop: `1px solid ${C.cream}20`, paddingTop: 24, display: "flex", justifyContent: "space-between" }}>
+        <span style={{ fontFamily: "'DM Sans'", fontSize: 11, color: `${C.cream}66` }}>2026 Āhā Skincare. Rooted in what's real.</span>
       </div>
     </footer>
   );
