@@ -109,17 +109,15 @@ function Navbar() {
       padding: "0 32px",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
           <div onClick={() => navigate('/')} style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 24, color: C.forest, display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
             <svg viewBox="0 0 20 24" style={{ width: 16, height: 19 }}><path d="M10 22 Q8 14 3 8 Q1 5 4 2 Q7 0 10 3 Q13 0 16 2 Q19 5 17 8 Q12 14 10 22Z" fill={C.forest} opacity="0.7" /></svg>
             Āhā
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: "'DM Sans'", fontSize: 12, color: C.stone }}>
-            <span style={{ cursor: "pointer", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = C.forest} onMouseLeave={(e) => e.target.style.color = C.stone}>Shop</span>
-            <svg viewBox="0 0 16 16" style={{ width: 10, height: 10 }}><path d="M5 3 L10 8 L5 13" fill="none" stroke={C.stone} strokeWidth="1.2" strokeLinecap="round" /></svg>
-            <span style={{ cursor: "pointer", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = C.forest} onMouseLeave={(e) => e.target.style.color = C.stone}>Serums</span>
-            <svg viewBox="0 0 16 16" style={{ width: 10, height: 10 }}><path d="M5 3 L10 8 L5 13" fill="none" stroke={C.stone} strokeWidth="1.2" strokeLinecap="round" /></svg>
-            <span style={{ color: C.forest, fontWeight: 500 }}>Kumkumadi Glow Serum</span>
+          <div style={{ display: "flex", gap: 28 }}>
+            <span onClick={() => navigate('/quiz')} style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 500, color: C.forest, cursor: "pointer", letterSpacing: "0.03em", transition: "color 0.2s" }}
+              onMouseEnter={(e) => e.target.style.color = C.saffron} onMouseLeave={(e) => e.target.style.color = C.forest}>Rituals</span>
+            <span onClick={() => navigate('/product/kumkumadi')} style={{ fontFamily: "'DM Sans'", fontSize: 13, fontWeight: 500, color: C.saffron, cursor: "pointer", letterSpacing: "0.03em" }}>Ingredients</span>
           </div>
         </div>
         <div style={{ position: "relative", cursor: "pointer" }}>

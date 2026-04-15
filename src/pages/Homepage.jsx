@@ -146,10 +146,8 @@ function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Shop", to: "/product/kumkumadi" },
     { label: "Rituals", to: "/quiz" },
     { label: "Ingredients", to: "/product/kumkumadi" },
-    { label: "Our Story", to: null },
   ];
 
   return (
